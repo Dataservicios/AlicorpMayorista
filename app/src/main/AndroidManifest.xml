@@ -272,6 +272,15 @@
             android:theme="@style/AppThemeAdminPanel"
             >
         </activity>
+
+        <activity
+            android:name=".AditoriaAlicorp.FirmaCargo"
+            android:screenOrientation="portrait"
+            android:label="Cumple Cuota"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+        </activity>
+
         <activity
             android:name=".AditoriaAlicorp.ExisteProducto"
             android:screenOrientation="portrait"
@@ -285,6 +294,29 @@
             android:name=".AditoriaAlicorp.CategoriasCumpleCuotas"
             android:screenOrientation="portrait"
             android:label="Cuotas"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+        </activity>
+
+        <activity
+            android:name=".AditoriaAlicorp.FacturaRegistro"
+            android:screenOrientation="portrait"
+            android:label="Registro de Factura"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+        </activity>
+        <activity
+            android:name=".AditoriaAlicorp.FacturaNueva"
+            android:screenOrientation="portrait"
+            android:label="Nueva Factura"
+            android:theme="@style/AppThemeAdminPanel"
+            >
+        </activity>
+
+        <activity
+            android:name=".AditoriaAlicorp.AceptoPremio"
+            android:screenOrientation="portrait"
+            android:label="Acepto Premio"
             android:theme="@style/AppThemeAdminPanel"
             >
         </activity>

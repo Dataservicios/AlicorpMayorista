@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,9 +42,12 @@ public class CumpleCuota extends Activity {
     private Switch swExhibidorExiste ;
     private Button bt_guardar;
     private TextView tvCuota,tvCatgoria;
+    private EditText  etComentario ;
+    //private LinearLayout lyCuota ;
     private String tipo,cadenaruc, fechaRuta;
     private Integer user_id,store_id,rout_id,audit_id, categoria_id, poll_id, company_id ;
-    private String montoCuota;
+    private String montoCuota,comentario;
+    private String montoCuotaSet = "0" ;
     int  is_sino=0 ;
     private DatabaseHelper db;
     private ProgressDialog pDialog;
@@ -66,6 +71,9 @@ public class CumpleCuota extends Activity {
         bt_guardar = (Button) findViewById(R.id.btGuardar);
         tvCuota = (TextView) findViewById(R.id.tvCuota);
         tvCatgoria = (TextView) findViewById(R.id.tvCategoria);
+        //etMontoCuota = (EditText) findViewById(R.id.etMontoCuota);
+        etComentario = (EditText) findViewById(R.id.etComentario);
+       // lyCuota = (LinearLayout) findViewById(R.id.lyCuota);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -98,14 +106,17 @@ public class CumpleCuota extends Activity {
 
         new loadCuota().execute();
 
+        //lyCuota.setVisibility(View.INVISIBLE);
         swExhibidorExiste.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     is_sino = 1;
+                   // lyCuota.setVisibility(View.VISIBLE);
 
                 } else {
                     is_sino = 0;
+                   // lyCuota.setVisibility(View.INVISIBLE);
 
 
                 }
@@ -119,6 +130,18 @@ public class CumpleCuota extends Activity {
             @Override
             public void onClick(View v) {
 
+
+                comentario = etComentario.getText().toString();
+//                if( is_sino == 1){
+//                    String str = etMontoCuota.getText().toString().trim();
+//                    if (str.equals("")) {
+//                        Toast.makeText(MyActivity, "Ingrese el monto", Toast.LENGTH_LONG).show();
+//                        return ;
+//                    } else {
+//                        montoCuotaSet = str ;
+//                    }
+//
+//                }
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyActivity);
@@ -136,10 +159,10 @@ public class CumpleCuota extends Activity {
                         mPollDetail.setOptions(0);
                         mPollDetail.setLimits(0);
                         mPollDetail.setMedia(0);
-                        mPollDetail.setComment(0);
+                        mPollDetail.setComment(1);
                         mPollDetail.setResult(is_sino);
-                        mPollDetail.setLimite(0);
-                        mPollDetail.setComentario("");
+                        mPollDetail.setLimite("");
+                        mPollDetail.setComentario(comentario);
                         mPollDetail.setAuditor(user_id);
                         mPollDetail.setProduct_id(0);
                         mPollDetail.setCategory_product_id(categoria_id);
@@ -204,7 +227,7 @@ public class CumpleCuota extends Activity {
             // dismiss the dialog once product deleted
 
             if (result){
-                if (is_sino == 1) {
+                //if (is_sino == 1) {
 
                     Bundle argPDV = new Bundle();
                     argPDV.putInt("store_id", Integer.valueOf(store_id));
@@ -219,12 +242,12 @@ public class CumpleCuota extends Activity {
                     startActivity(intent);
                     finish();
 
-                } else if(is_sino == 0) {
-                    // loadLoginActivity();
-                    categoria.setActive(0);
-                    db.updateCategoria(categoria);
-                    finish();
-                }
+//                } else if(is_sino == 0) {
+//
+//                    categoria.setActive(0);
+//                    db.updateCategoria(categoria);
+//                    finish();
+//                }
 
 
             } else {
@@ -330,23 +353,23 @@ public class CumpleCuota extends Activity {
             pDialog.dismiss();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
-            //Toast.makeText(MyActivity, "No se puede volver atras, los datos ya fueron guardado, para modificar pongase en contácto con el administrador", Toast.LENGTH_LONG).show();
-            onBackPressed();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(MyActivity, "No se puede volver atras, los datos ya fueron guardado, para modificar póngase en contácto con el administrador", Toast.LENGTH_LONG).show();
-//        super.onBackPressed();
-//        this.finish();
-//
-//        overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_right);
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
+//            //Toast.makeText(MyActivity, "No se puede volver atras, los datos ya fueron guardado, para modificar pongase en contácto con el administrador", Toast.LENGTH_LONG).show();
+//            onBackPressed();
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+//    @Override
+//    public void onBackPressed() {
+//        Toast.makeText(MyActivity, "No se puede volver atras, los datos ya fueron guardado, para modificar póngase en contácto con el administrador", Toast.LENGTH_LONG).show();
+////        super.onBackPressed();
+////        this.finish();
+////
+////        overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_right);
+//    }
 
 }

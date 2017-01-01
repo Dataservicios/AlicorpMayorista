@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
     // Database Name
     private static final String DATABASE_NAME = "db-ALicorpMayorista";
     // Table Names
@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     protected static final String TABLE_SOD_VENTANAS = "sodventanas";
     protected static final String TABLE_MEDIAS = "medias";
     protected static final String TABLE_CATEGORIAS = "categorias";
+    protected static final String TABLE_REG_INVOICE= "registrar_factura";
 
     //Name columns common
     protected static final String KEY_ID = "id";
@@ -65,12 +66,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     protected static final String KEY_CODE = "code";
     protected static final String KEY_IMAGEN = "image";
     protected static final String KEY_COMPANY_ID = "company_id";
+
     protected static final String KEY_CATEGORY_ID = "category_id";
     protected static final String KEY_CATEGORY_NAME = "category_name";
     protected static final String KEY_PRECIO = "precio";
     protected static final String KEY_STATUS = "status";
 
-    //Name columns SODVentanas
+
 
     //Name column Presense Product
     protected static final String KEY_STORE_ID = "store_id";
@@ -94,6 +96,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     protected   static final String KEY_TIPO = "tipo";
     protected   static final String KEY_NAME_FILE = "archivo";
     protected   static final String KEY_TYPE = "type";
+    protected   static final String KEY_MONTO = "monto";
+    protected   static final String KEY_RAZON_SOCIAL = "razon_social";
+
     protected   static final String KEY_CATEGORY_PRODUCT_ID = "category_product_id";
 
 
@@ -198,8 +203,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_CATEGORY_PRODUCT_ID + " INTEGER, "
             + KEY_COMPANY_ID + " INTEGER, "
             + KEY_NAME_FILE + " TEXT, "
+            + KEY_MONTO + " TEXT, "
+            + KEY_RAZON_SOCIAL + " TEXT, "
             + KEY_TYPE + " INTEGER, "
             + KEY_DATE_CREATED + " TEXT )";
+
+    private static final String CREATE_TABLE_REG_INVOICE  = "CREATE TABLE "
+            + TABLE_REG_INVOICE + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_STORE + " INTEGER ,"
+            + KEY_NAME_FILE + " TEXT, "
+            + KEY_MONTO + " TEXT, "
+            + KEY_RAZON_SOCIAL + " TEXT ) ";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -219,6 +235,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PUBLICITY);
         db.execSQL(CREATE_TABLE_SOD_VENTANAS);
         db.execSQL(CREATE_TABLE_MEDIAS);
+        db.execSQL(CREATE_TABLE_REG_INVOICE);
         db.execSQL(CREATE_TABLE_CATEGORIAS);
     }
 
@@ -236,6 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PUBLICITY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOD_VENTANAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDIAS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REG_INVOICE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIAS);
 
         // create new tables

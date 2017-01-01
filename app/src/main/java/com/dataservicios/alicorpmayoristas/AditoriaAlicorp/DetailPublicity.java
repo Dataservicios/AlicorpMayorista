@@ -148,6 +148,8 @@ public class DetailPublicity extends Activity {
         bolsa.putString("sod_ventana_id","0");
         bolsa.putString("company_id", String.valueOf(GlobalConstant.company_id));
         bolsa.putString("category_product_id", "0");
+        bolsa.putString("monto","");
+        bolsa.putString("razon_social","");
         bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesPublicitiesAlicorp");
         bolsa.putString("tipo", "1");
         i.putExtras(bolsa);

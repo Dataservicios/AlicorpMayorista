@@ -141,7 +141,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 Log.d("request!", "starting");
                 // getting product details by making HTTP request
-                JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/loginUser" ,"POST", params);
+                //JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/loginUser" ,"POST", params);
+                JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/loginMovil" ,"POST", params);
 
                 if (json != null) {
                     // check your log for json response
@@ -156,7 +157,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         db.deleteAllUser();
                         User users = new User();
                         users.setId(id_user);
-
 
                         users.setEmail(usuario.getText().toString());
                         users.setName(userFullName);

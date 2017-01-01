@@ -87,7 +87,86 @@
         </LinearLayout>
 
 
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/lyCuota"-->
+            <!--android:padding="5dp">-->
+            <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="5dp">-->
 
+                <!--<TextView-->
+
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                    <!--android:text="Cuota"-->
+
+                    <!--android:textSize="@dimen/general"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--&gt;-->
+
+                <!--<EditText-->
+                    <!--android:layout_width="150dp"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:inputType="numberDecimal"-->
+
+                    <!--style="@style/TextLogin"-->
+
+                    <!--android:scrollHorizontally="false"-->
+                    <!--android:scrollbars="vertical"-->
+
+                    <!--android:id="@+id/etMontoCuota"-->
+                    <!--android:focusable="true"-->
+                    <!--android:focusableInTouchMode="true"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Comentario"
+                android:textSize="@dimen/general"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:enabled="true"
+                android:visibility="visible"
+                style="@style/TextLogin"
+                android:lines="20"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+                android:textSize="15sp"
+                android:id="@+id/etComentario" />
+        </LinearLayout>
 
 
         <LinearLayout

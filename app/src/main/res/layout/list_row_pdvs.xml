@@ -96,7 +96,17 @@
         android:textSize="@dimen/genre" />
 
     <!-- Release Year -->
-
+    <Button
+        android:id="@+id/bt_do"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_premio"
+        android:layout_toRightOf="@+id/tvStoreId"
+        android:layout_below="@+id/tvTypeBodega"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        android:clickable="false"
+        />
     <ImageView
         android:id="@+id/imgStatus"
         android:layout_width="48dp"
@@ -105,5 +115,6 @@
 
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"/>
+
 
 </RelativeLayout>

@@ -56,6 +56,8 @@ public class MediaRepo extends DatabaseHelper {
         values.put(KEY_CATEGORY_PRODUCT_ID, media.getCategory_product_id());
         values.put(KEY_PUBLICITY_ID, media.getPublicity_id());
         values.put(KEY_NAME_FILE, media.getFile());
+        values.put(KEY_MONTO, media.getMonto());
+        values.put(KEY_RAZON_SOCIAL, media.getRazonSocial());
         values.put(KEY_TYPE, media.getType());
         values.put(KEY_DATE_CREATED, media.getCreated_at());
 
@@ -90,6 +92,8 @@ public class MediaRepo extends DatabaseHelper {
                 pd.setCategory_product_id((c.getInt(c.getColumnIndex(KEY_CATEGORY_PRODUCT_ID))));
                 pd.setPublicity_id(c.getInt(c.getColumnIndex(KEY_PUBLICITY_ID)));
                 pd.setFile((c.getString(c.getColumnIndex(KEY_NAME_FILE))));
+                pd.setMonto((c.getString(c.getColumnIndex(KEY_MONTO))));
+                pd.setRazonSocial((c.getString(c.getColumnIndex(KEY_RAZON_SOCIAL))));
                 pd.setType((c.getInt(c.getColumnIndex(KEY_TYPE))));
                 pd.setCreated_at((c.getString(c.getColumnIndex(KEY_DATE_CREATED))));
                 medias.add(pd);
@@ -122,6 +126,8 @@ public class MediaRepo extends DatabaseHelper {
             pd.setPublicity_id(c.getInt(c.getColumnIndex(KEY_PUBLICITY_ID)));
             pd.setType((c.getInt(c.getColumnIndex(KEY_TYPE))));
             pd.setFile((c.getString(c.getColumnIndex(KEY_NAME_FILE))));
+            pd.setMonto((c.getString(c.getColumnIndex(KEY_MONTO))));
+            pd.setRazonSocial((c.getString(c.getColumnIndex(KEY_RAZON_SOCIAL))));
             pd.setCreated_at((c.getString(c.getColumnIndex(KEY_DATE_CREATED))));
         }
         c.close();
@@ -152,6 +158,8 @@ public class MediaRepo extends DatabaseHelper {
                 pd.setPublicity_id(c.getInt(c.getColumnIndex(KEY_PUBLICITY_ID)));
                 pd.setCategory_product_id(c.getInt(c.getColumnIndex(KEY_CATEGORY_PRODUCT_ID)));
                 pd.setFile((c.getString(c.getColumnIndex(KEY_NAME_FILE))));
+                pd.setMonto((c.getString(c.getColumnIndex(KEY_MONTO))));
+                pd.setRazonSocial((c.getString(c.getColumnIndex(KEY_RAZON_SOCIAL))));
                 pd.setType((c.getInt(c.getColumnIndex(KEY_TYPE))));
                 pd.setCreated_at((c.getString(c.getColumnIndex(KEY_DATE_CREATED))));
             }

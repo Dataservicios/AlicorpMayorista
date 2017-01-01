@@ -235,6 +235,18 @@ public class CategoriasCumpleCuotas extends Activity {
 
                 db.updatePublicityDesactive();
 
+                Bundle argPDV = new Bundle();
+
+                argPDV.putInt("store_id", Integer.valueOf(store_id));
+                argPDV.putInt("rout_id", Integer.valueOf(rout_id));
+                argPDV.putInt("categoria_id", Integer.valueOf(categoria_id));
+                argPDV.putString("fechaRuta", fechaRuta);
+                argPDV.putInt("audit_id", audit_id);
+
+                Intent intent = new Intent(MyActivity,FirmaCargo.class);
+                intent.putExtras(argPDV);
+                startActivity(intent);
+
                 finish();
 
 

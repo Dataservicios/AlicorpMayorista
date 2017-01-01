@@ -49,7 +49,7 @@ public class AuditAlicorp {
      */
     public boolean uploadMedia(Media media, int typeSend){
         HttpURLConnection httpConnection = null;
-        final String url_upload_image = GlobalConstant.dominio + "/insertImages";
+        final String url_upload_image = GlobalConstant.dominio + "/insertImagesMayorista";
 
         String imag = media.getFile();
         int id = media.getId();
@@ -60,6 +60,8 @@ public class AuditAlicorp {
         int category_product_id = media.getCategory_product_id();
         int store_id= media.getStore_id();
         int type = media.getType();
+        String monto = media.getMonto();
+        String razon_social = media.getRazonSocial();
         String hora_sistema = media.getCreated_at();
         String created_at = media.getCreated_at();
 
@@ -69,7 +71,7 @@ public class AuditAlicorp {
         }
         Bitmap bbicon = null;
         Bitmap scaledBitmap;
-        bbicon = BitmapLoader.loadBitmap(file.getAbsolutePath(),200,200);
+        bbicon = BitmapLoader.loadBitmap(file.getAbsolutePath(),300,300);
 
 //        if(Build.MODEL.equals("MotoG3")){
 //            scaledBitmap = FileImagenManager.rotateImage(FileImagenManager.scaleDown(bbicon, 450 , true),0);
@@ -79,10 +81,10 @@ public class AuditAlicorp {
 
         if(Build.MODEL.equals("MotoG3")){
             //scaledBitmap = BitmapLoader.scaleDown() BitmapLoader.rotateImage(bbicon,0);
-            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 480 , true),0);
+            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 540 , true),0);
         } else {
             //scaledBitmap = BitmapLoader.rotateImage(bbicon,90);
-            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 480 , true),90);
+            scaledBitmap = BitmapLoader.rotateImage(BitmapLoader.scaleDown(bbicon, 540 , true),90);
         }
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -110,6 +112,8 @@ public class AuditAlicorp {
             mpEntity.addPart("category_product_id", new StringBody(String.valueOf(category_product_id)));
             mpEntity.addPart("company_id", new StringBody(String.valueOf(company_id)));
             mpEntity.addPart("tipo", new StringBody(String.valueOf(type)));
+            mpEntity.addPart("monto", new StringBody(String.valueOf(monto)));
+            mpEntity.addPart("razon_social", new StringBody(String.valueOf(razon_social)));
             mpEntity.addPart("horaSistema", new StringBody(String.valueOf(hora_sistema)));
 
             URL url = new URL(url_upload_image);
@@ -424,10 +428,11 @@ public class AuditAlicorp {
                 success = json.getInt("success");
                 if (success == 1) {
                     Log.d(LOG_TAG, "Se insertó registro correctamente");
+                   // return true ;
                 }else{
                     Log.d(LOG_TAG, "no insertó registro");
                     // return json.getString("message");
-                    // return false;
+                     return false;
                 }
             }
 
@@ -435,7 +440,7 @@ public class AuditAlicorp {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return true ;
     }
 
 

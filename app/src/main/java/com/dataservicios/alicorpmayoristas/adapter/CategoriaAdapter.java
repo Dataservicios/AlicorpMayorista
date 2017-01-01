@@ -73,4 +73,15 @@ public class CategoriaAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public boolean isEnabled(int position) {
+
+        // Deshabilitando los items del adptador segun el statu
+        if( categoriaItems.get(position).getActive()==0){
+
+            return false;
+
+        }
+        return true;
+    }
 }

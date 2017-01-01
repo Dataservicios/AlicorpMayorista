@@ -174,6 +174,8 @@ public class Ventanas extends Activity {
         bolsa.putString("poll_id", String.valueOf("0"));
         bolsa.putString("sod_ventana_id", String.valueOf(sod_ventana_id));
         bolsa.putString("company_id", String.valueOf(GlobalConstant.company_id));
+        bolsa.putString("monto","");
+        bolsa.putString("razon_social","");
         bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesPublicitiesAlicorp");
         bolsa.putString("tipo", "1");
 

@@ -94,8 +94,8 @@ public class UpdateServices extends Service {
                 Log.d(TAG, "UpdaterThread running");
                 try{
 
-                    int hour = Integer.valueOf(new SimpleDateFormat("k").format(new Date()));
-                    if(hour < 8 || hour > 19){
+//                    int hour = Integer.valueOf(new SimpleDateFormat("k").format(new Date()));
+//                    if(hour < 6 || hour > 12){
 
                         if(Connectivity.isConnected(context)) {
                             if (Connectivity.isConnectedFast(context)) {
@@ -120,12 +120,10 @@ public class UpdateServices extends Service {
                             Log.i(TAG," No internet connection" );
                         }
 
-                        Log.i(TAG,"Se está enviando la foto " + String.valueOf(hour));
-
-
-                    } else {
-                        Log.i(TAG,"No se envía fuera del horario" + String.valueOf(hour));
-                    }
+//                        Log.i(TAG,"Se está enviando la foto " + String.valueOf(hour));
+//                    } else {
+//                        Log.i(TAG,"No se envía fuera del horario" + String.valueOf(hour));
+//                    }
 
 
 

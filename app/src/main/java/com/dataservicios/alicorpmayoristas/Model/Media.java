@@ -12,6 +12,8 @@ public class Media {
     private int category_product_id;
     private int product_id;
     private int company_id;
+    private String monto ;
+    private String razonSocial;
     private int type ;
     private String file ;
     private String created_at;
@@ -88,6 +90,22 @@ public class Media {
         this.file = file;
     }
 
+    public String getMonto() {
+        return monto;
+    }
+
+    public void setMonto(String monto) {
+        this.monto = monto;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
     public String getCreated_at() {
         return created_at;
     }
@@ -95,9 +113,6 @@ public class Media {
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
-
-
-
 
 
 }

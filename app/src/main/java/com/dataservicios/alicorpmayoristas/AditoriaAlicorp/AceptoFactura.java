@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +46,7 @@ public class AceptoFactura extends Activity {
     private Button btGuardar, bt_photo;
     private DatabaseHelper db ;
     private Activity MyActivity = this ;
-    private String fechaRuta,category_name;
+    private String fechaRuta,category_name,comentario;
     private TextView tvCategoria;
     private TextView tvCuota;
     private ProgressDialog pDialog;
@@ -54,6 +55,7 @@ public class AceptoFactura extends Activity {
     private int is_sino=0 ;
     private String montoCuota;
     private PollDetail mPollDetail;
+    private EditText  etComentario ;
     Categoria categoria;
 
 
@@ -86,11 +88,12 @@ public class AceptoFactura extends Activity {
         categoria = db.getCategoria(categoria_id);
 
 
-        bt_photo = (Button) findViewById(R.id.btPhoto);
+        //bt_photo = (Button) findViewById(R.id.btPhoto);
         btGuardar = (Button) findViewById(R.id.btGuardar);
         tvCategoria = (TextView) findViewById(R.id.tvCategoria);
         tvCuota = (TextView) findViewById(R.id.tvCuota);
         swAceptoFactura = (Switch) findViewById(R.id.swAceptoFactura);
+        etComentario = (EditText) findViewById(R.id.etComentario);
 
 
         tvCategoria.setText("Categoría: " + categoria.getNombre());
@@ -102,12 +105,12 @@ public class AceptoFactura extends Activity {
         pDialog.setCancelable(false);
 
 
-        bt_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takePhoto();
-            }
-        });
+//        bt_photo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                takePhoto();
+//            }
+//        });
         swAceptoFactura.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -123,6 +126,7 @@ public class AceptoFactura extends Activity {
             @Override
             public void onClick(View v) {
 
+                comentario = etComentario.getText().toString();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyActivity);
                 builder.setTitle("Guardar Presencia de productos");
@@ -141,10 +145,10 @@ public class AceptoFactura extends Activity {
                         mPollDetail.setOptions(0);
                         mPollDetail.setLimits(0);
                         mPollDetail.setMedia(0);
-                        mPollDetail.setComment(0);
+                        mPollDetail.setComment(1);
                         mPollDetail.setResult(is_sino);
-                        mPollDetail.setLimite(0);
-                        mPollDetail.setComentario("");
+                        mPollDetail.setLimite("0");
+                        mPollDetail.setComentario(comentario);
                         mPollDetail.setAuditor(user_id);
                         mPollDetail.setProduct_id(0);
                         mPollDetail.setPublicity_id(0);
@@ -198,7 +202,6 @@ public class AceptoFactura extends Activity {
 
             if(!AuditAlicorp.insertPollDetail(mPD)) return false;
 
-
             return true;
         }
         /**
@@ -210,9 +213,25 @@ public class AceptoFactura extends Activity {
             if (result){
 
                     // loadLoginActivity();
+                if (is_sino == 1) {
+                    Bundle argPDV = new Bundle();
+                    argPDV.putInt("store_id", Integer.valueOf(store_id));
+                    argPDV.putInt("rout_id", Integer.valueOf(rout_id));
+                    argPDV.putInt("categoria_id", Integer.valueOf(categoria_id));
+                    argPDV.putString("fechaRuta", fechaRuta);
+                    argPDV.putInt("audit_id", audit_id);
+                    argPDV.putString("montoCuota", montoCuota);
+
+                    Intent intent = new Intent(MyActivity,FacturaRegistro.class);
+                    intent.putExtras(argPDV);
+                    startActivity(intent);
+                    finish();
+                } else {
                     categoria.setActive(0);
                     db.updateCategoria(categoria);
                     finish();
+                }
+
 
             } else {
                 Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente", Toast.LENGTH_LONG).show();
@@ -232,6 +251,8 @@ public class AceptoFactura extends Activity {
         bolsa.putString("poll_id",String.valueOf(poll_id));
         bolsa.putString("sod_ventana_id",String.valueOf(sod_ventana_id));
         bolsa.putString("company_id",String.valueOf(GlobalConstant.company_id));
+        bolsa.putString("monto","20");
+        bolsa.putString("razon_social","Pirulito");
         bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesPublicitiesAlicorp");
         bolsa.putString("tipo", "1");
         i.putExtras(bolsa);

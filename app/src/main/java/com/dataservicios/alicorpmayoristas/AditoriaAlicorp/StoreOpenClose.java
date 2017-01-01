@@ -71,7 +71,7 @@ public class StoreOpenClose extends Activity {
     private RadioButton[] radioButton1Array;
     private RadioButton[] radioButton2Array;
 
-    private PollDetail mPollDetail;
+    private PollDetail mPollDetail, pollDetail2;
     private Audit mAudit;
 
     @Override
@@ -270,7 +270,7 @@ public class StoreOpenClose extends Activity {
                         mPollDetail.setMedia(0);
                         mPollDetail.setComment(0);
                         mPollDetail.setResult(is_open);
-                        mPollDetail.setLimite(0);
+                        mPollDetail.setLimite("0");
                         mPollDetail.setComentario("");
                         mPollDetail.setAuditor(user_id);
                         mPollDetail.setProduct_id(0);
@@ -281,6 +281,27 @@ public class StoreOpenClose extends Activity {
                         mPollDetail.setSelectdOptions(opt1);
                         mPollDetail.setSelectedOtionsComment(comentario);
                         mPollDetail.setPriority("0");
+
+                        pollDetail2 = new PollDetail();
+                        pollDetail2.setPoll_id(poll_id2);
+                        pollDetail2.setStore_id(store_id);
+                        pollDetail2.setSino(1);
+                        pollDetail2.setOptions(1);
+                        pollDetail2.setLimits(0);
+                        pollDetail2.setMedia(0);
+                        pollDetail2.setComment(0);
+                        pollDetail2.setResult(is_permitio);
+                        pollDetail2.setLimite("0");
+                        pollDetail2.setComentario("");
+                        pollDetail2.setAuditor(user_id);
+                        pollDetail2.setProduct_id(0);
+                        pollDetail2.setCategory_product_id(0);
+                        pollDetail2.setPublicity_id(0);
+                        pollDetail2.setCompany_id(GlobalConstant.company_id);
+                        pollDetail2.setCommentOptions(1);
+                        pollDetail2.setSelectdOptions(opt2);
+                        pollDetail2.setSelectedOtionsComment(comentario);
+                        pollDetail2.setPriority("0");
 
                         new loadPoll().execute(mPollDetail);
 
@@ -316,104 +337,15 @@ public class StoreOpenClose extends Activity {
         bolsa.putString("sod_ventana_id", String.valueOf("0"));
         bolsa.putString("company_id", String.valueOf(GlobalConstant.company_id));
         bolsa.putString("category_product_id", "0");
+        bolsa.putString("monto","");
+        bolsa.putString("razon_social","");
         bolsa.putString("url_insert_image", GlobalConstant.dominio + "/insertImagesProductPollAlicorp");
         bolsa.putString("tipo", "1");
         i.putExtras(bolsa);
         startActivity(i);
     }
 
-//    class loadPoll extends AsyncTask<Void, Integer , Boolean> {
-//        /**
-//         * Antes de comenzar en el hilo determinado, Mostrar progresión
-//         * */
-//        boolean failure = false;
-//        @Override
-//        protected void onPreExecute() {
-//            //tvCargando.setText("Cargando Product...");
-//            pDialog.show();
-//            super.onPreExecute();
-//        }
-//        @Override
-//        protected Boolean doInBackground(Void... params) {
-//            // TODO Auto-generated method stub
-//
-//            if(is_open==1) {
-//                if (is_permitio==1){
-//                    if(!InsertAuditPollsProduct(store_id, 0, poll_id,0,is_open,opt1,"","")) return false ;
-//                    if(!InsertAuditPollsProduct(store_id, 0, poll_id2,0,is_permitio,opt2,comentario,"")) return false ;
-//                } else if (is_permitio==0) {
-//                    if(!InsertAuditPollsProduct(store_id, 0, poll_id,0,is_open,opt1,"","")) return false;
-//                    if(!InsertAuditPollsProduct(store_id, 0,poll_id2,1,is_permitio,opt2,comentario,"")) return false;
-//                }
-//
-//            } else if(is_open==0){
-//                if(!InsertAuditPollsProduct(store_id, 0 ,poll_id,1, is_open,opt1,comentario,"")) return false;
-//            }
-//
-//
-//            return true;
-//        }
-//        /**
-//         * After completing background task Dismiss the progress dialog
-//         * **/
-//        protected void onPostExecute(Boolean result) {
-//            // dismiss the dialog once product deleted
-//
-//            if (result){
-//                // loadLoginActivity();
-//                if(is_open==1) {
-//                    if (is_permitio==1){
-//                        Bundle argRuta = new Bundle();
-//                        argRuta.clear();
-//                        argRuta.putInt("idPDV", store_id);
-//                        argRuta.putString("fechaRuta", fechaRuta);
-//                        argRuta.putInt("idAuditoria", audit_id);
-//                        argRuta.putInt("rout_id", rout_id);
-//                        argRuta.putString("type", type);
-//                        argRuta.putString("region", region);
-//                        argRuta.putString("typeBodega", typeBodega);
-//
-//                        Intent intent;
-//                        //intent = new Intent(MyActivity, Product.class);
-//                        //intent = new Intent(MyActivity, TipoDex.class);
-//                        intent = new Intent(MyActivity, DetallePdv.class);
-//                        intent.putExtras(argRuta);
-//                        startActivity(intent);
-//                        finish();
-//
-//                    } else if (is_permitio==0) {
-//                        Bundle argRuta = new Bundle();
-//                        argRuta.clear();
-//                        argRuta.putInt("store_id", store_id);
-//                        argRuta.putInt("rout_id", rout_id);
-//
-//                        Intent intent;
-//                        intent = new Intent(MyActivity, Ubicacion.class);
-//                        intent.putExtras(argRuta);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//
-//                } else if(is_open==0){
-//                    Bundle argRuta = new Bundle();
-//                    argRuta.clear();
-//                    argRuta.putInt("store_id", store_id);
-//                    argRuta.putInt("rout_id", rout_id);
-//                    Intent intent;
-//                    intent = new Intent(MyActivity, Ubicacion.class);
-//                    intent.putExtras(argRuta);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//
-//
-//
-//            } else {
-//                Toast.makeText(MyActivity , "No se pudo guardar la información intentelo nuevamente", Toast.LENGTH_LONG).show();
-//            }
-//            hidepDialog();
-//        }
-//    }
+
 
 
 
@@ -452,8 +384,10 @@ public class StoreOpenClose extends Activity {
 
                 if(is_permitio == 1){
                     if(!AuditAlicorp.insertPollDetail(mPD)) return false;
+                    if(!AuditAlicorp.insertPollDetail(pollDetail2)) return false;
                 } else {
                     if(!AuditAlicorp.insertPollDetail(mPD)) return false;
+                    if(!AuditAlicorp.insertPollDetail(pollDetail2)) return false;
                     if(!AuditAlicorp.closeAuditRoadStore(mAudit)) return false;
                     if(!AuditAlicorp.closeAuditRoadAll(mAudit)) return false;
                 }
@@ -461,6 +395,7 @@ public class StoreOpenClose extends Activity {
             } else{
 
                 if(!AuditAlicorp.insertPollDetail(mPD)) return false;
+                if(!AuditAlicorp.insertPollDetail(pollDetail2)) return false;
                 if(!AuditAlicorp.closeAuditRoadStore(mAudit)) return false;
                 if(!AuditAlicorp.closeAuditRoadAll(mAudit)) return false;
 

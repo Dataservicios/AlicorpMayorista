@@ -40,8 +40,7 @@ public class AndroidCustomGalleryActivity extends Activity {
 
     private static final int TAKE_PICTURE = 1;
     private String mCurrentPhotoPath;
-    private static final String JPEG_FILE_PREFIX = "_Alicorp_";
-    private static final String JPEG_FILE_SUFFIX = ".jpg";
+
 
     private String url_insert_image ;
 
@@ -52,7 +51,7 @@ public class AndroidCustomGalleryActivity extends Activity {
     File[] listFile;
     ArrayList<String> names_file = new ArrayList<String>();
     Activity MyActivity ;
-    String store_id,publicities_id,tipo, invoices_id,product_id,sod_ventana_id , poll_id,company_id,category_product_id;
+    String store_id,publicities_id,tipo, invoices_id,product_id,sod_ventana_id , poll_id,company_id,category_product_id,monto,razon_social;
 
     /** Called when the activity is first created. */
     @Override
@@ -74,6 +73,8 @@ public class AndroidCustomGalleryActivity extends Activity {
         category_product_id = bundle.getString("category_product_id");
         sod_ventana_id = bundle.getString("sod_ventana_id");
         url_insert_image = bundle.getString("url_insert_image");
+        monto = bundle.getString("monto");
+        razon_social = bundle.getString("razon_social");
         tipo = bundle.getString("tipo");
 
 
@@ -99,16 +100,15 @@ public class AndroidCustomGalleryActivity extends Activity {
                 // create intent with ACTION_IMAGE_CAPTURE action
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-
                 Bundle bundle = getIntent().getExtras();
                 String idPDV = bundle.getString("idPDV");
 
                 // Create an image file name
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageFileName = String.format("%06d", Integer.parseInt(store_id))+ "_" + GlobalConstant.company_id + JPEG_FILE_PREFIX + timeStamp;
+                String imageFileName = String.format("%06d", Integer.parseInt(store_id))+ "_" + GlobalConstant.company_id + GlobalConstant.JPEG_FILE_PREFIX + timeStamp;
                 File albumF = getAlbumDir();
                 // to save picture remove comment
-                File file = new File(albumF,imageFileName+JPEG_FILE_SUFFIX);
+                File file = new File(albumF,imageFileName+GlobalConstant.JPEG_FILE_SUFFIX);
 
                 Uri photoPath = Uri.fromFile(file);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoPath);
@@ -145,19 +145,16 @@ public class AndroidCustomGalleryActivity extends Activity {
 
                            // LinearLayout itemLayout = (LinearLayout)imagegrid.getChildAt(i); // Find by under LinearLayout
                             RelativeLayout itemLayout = (RelativeLayout)imagegrid.getChildAt(i); // Find by under LinearLayout
-
                             CheckBox checkbox = (CheckBox)itemLayout.findViewById(R.id.itemCheckBox);
                             if(checkbox.isChecked())
                             {
                                 contador ++;
                                 // Log.d("Item "+String.valueOf(i), checkbox.getTag().toString());
                                 //Toast.makeText(MyActivity,checkbox.getTag().toString() ,Toast.LENGTH_LONG).show();
-
                                 if (  listFile[i].getName().substring(0,6).equals(String.format("%06d", Integer.parseInt(store_id)) )) {
                                     String name = listFile[i].getName();
                                     names_file.add(name);
                                     //  holder_counter++;
-
                                     try {
                                         copyFile(getAlbumDir() + "/" + listFile[i].getName(), getAlbumDirTemp() + "/" + listFile[i].getName());
                                         copyFile(getAlbumDir() + "/" + listFile[i].getName(), getAlbumDirBackup() + "/" + listFile[i].getName());
@@ -165,9 +162,7 @@ public class AndroidCustomGalleryActivity extends Activity {
                                         e.printStackTrace();
                                     }
                                 }
-
                                 listFile[i].delete();
-
                             }
                         }
 
@@ -204,6 +199,8 @@ public class AndroidCustomGalleryActivity extends Activity {
                 argPDV.putString("category_product_id",category_product_id);
                 argPDV.putString("sod_ventana_id",sod_ventana_id);
                 argPDV.putString("url_insert_image",url_insert_image );
+                argPDV.putString("monto",monto );
+                argPDV.putString("razon_social",razon_social );
                 argPDV.putString("tipo",tipo);
 
                 intent.putStringArrayListExtra("names_file", names_file);
@@ -354,6 +351,8 @@ public class AndroidCustomGalleryActivity extends Activity {
             bolsa.putString("company_id",company_id);
             bolsa.putString("category_product_id",category_product_id);
             bolsa.putString("sod_ventana_id",sod_ventana_id);
+            bolsa.putString("monto",monto );
+            bolsa.putString("razon_social",razon_social );
             bolsa.putString("url_insert_image",url_insert_image );
             bolsa.putString("tipo",tipo);
 

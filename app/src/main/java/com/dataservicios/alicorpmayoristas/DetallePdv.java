@@ -383,7 +383,7 @@ public class DetallePdv extends FragmentActivity {
                                     Integer audit_id ;
                                     audit_id = Integer.valueOf(idAuditoria);
                                     // Solo para auditorias diferente del id 4 y 14
-                                    if(typeBodega.equals("3D") && (audit_id == 41) ) {
+                                    if(typeBodega.equals("6D") && (audit_id == 41) ) {
 
                                         break;
                                     };

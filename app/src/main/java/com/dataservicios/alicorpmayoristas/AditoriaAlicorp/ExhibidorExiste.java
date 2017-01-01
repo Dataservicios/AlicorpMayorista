@@ -152,7 +152,7 @@ public class ExhibidorExiste extends Activity {
                         mPollDetail.setMedia(0);
                         mPollDetail.setComment(0);
                         mPollDetail.setResult(is_sino);
-                        mPollDetail.setLimite(0);
+                        mPollDetail.setLimite("0");
                         mPollDetail.setComentario("");
                         mPollDetail.setAuditor(user_id);
                         mPollDetail.setProduct_id(0);
@@ -217,8 +217,8 @@ public class ExhibidorExiste extends Activity {
             // dismiss the dialog once product deleted
 
             if (result){
-                // loadLoginActivity();
-                if(is_sino==1) {
+
+//              if(is_sino==1) {
                     Bundle argPDV = new Bundle();
                     argPDV.putInt("store_id", Integer.valueOf(store_id));
                     argPDV.putInt("rout_id", Integer.valueOf(rout_id));
@@ -231,12 +231,12 @@ public class ExhibidorExiste extends Activity {
                     startActivity(intent);
 
                     finish();
-                } else if(is_sino==0){
-
-                    publicity.setActive(0);
-                    db.updatePublicity(publicity);
-                    finish();
-                }
+//                } else if(is_sino==0){
+//
+//                    publicity.setActive(0);
+//                    db.updatePublicity(publicity);
+//                    finish();
+//                }
 
 
 

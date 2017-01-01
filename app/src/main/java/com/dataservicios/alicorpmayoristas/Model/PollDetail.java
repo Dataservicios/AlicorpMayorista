@@ -13,7 +13,7 @@ public class PollDetail {
     int media;
     int comment ;
     int result;
-    int limite ;
+    String limite ;
     String comentario ;
     int auditor ;
     int product_id;
@@ -99,11 +99,11 @@ public class PollDetail {
         this.result = result;
     }
 
-    public int getLimite() {
+    public String getLimite() {
         return limite;
     }
 
-    public void setLimite(int limite) {
+    public void setLimite(String limite) {
         this.limite = limite;
     }
 

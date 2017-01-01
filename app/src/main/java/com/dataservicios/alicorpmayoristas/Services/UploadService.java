@@ -37,10 +37,10 @@ public class  UploadService extends IntentService {
     private Context context = this;
 
     ArrayList<String> names_file = new ArrayList<String>();
-    private static final String url_upload_image = GlobalConstant.dominio + "/uploadImagesAudit";
+   // private static final String url_upload_image = GlobalConstant.dominio + "/uploadImagesAudit";
     private String url_insert_image ;
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
-    String store_id,publicities_id,invoices_id,tipo,product_id,sod_ventana_id, company_id, poll_id,category_product_id;
+    String store_id,publicities_id,invoices_id,tipo,product_id,sod_ventana_id, company_id, poll_id,category_product_id,monto,razon_social;
 
     public UploadService(String name) {
         super(name);
@@ -62,6 +62,8 @@ public class  UploadService extends IntentService {
         category_product_id =intent.getStringExtra("category_product_id");
         sod_ventana_id = intent.getStringExtra("sod_ventana_id");
         url_insert_image=intent.getStringExtra("url_insert_image");
+        monto = intent.getStringExtra("monto");
+        razon_social = intent.getStringExtra("razon_social");
         tipo=intent.getStringExtra("tipo");
 
         for (int i = 0; i < names_file.size(); i++) {
@@ -75,6 +77,8 @@ public class  UploadService extends IntentService {
             m.setCompany_id(GlobalConstant.company_id);
             m.setCategory_product_id(Integer.valueOf(category_product_id));
             m.setPublicity_id(Integer.valueOf(publicities_id));
+            m.setMonto(monto);
+            m.setRazonSocial(razon_social);
             m.setCreated_at(created_at);
             m.setType(1);
             m.setFile(foto);
